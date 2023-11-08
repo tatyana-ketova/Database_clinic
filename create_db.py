@@ -23,8 +23,9 @@ else:
 
 
 sql_code = """
-USE clinic_db
-CREATE TABLE departments(
+USE clinic_db;
+
+CREATE TABLE IF NOT EXISTS departments(
 id INT PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR(50)
 );
@@ -32,7 +33,7 @@ name VARCHAR(50)
 INSERT INTO departments(name) VALUES
 ('Therapy'),('Support'),('Management'),('Other');
 
-CREATE TABLE employees(
+CREATE TABLE IF NOT EXISTS employees(
 id INT PRIMARY KEY AUTO_INCREMENT,
 first_name VARCHAR(50) NOT NULL,
 last_name VARCHAR(50) NOT NULL,
@@ -53,14 +54,14 @@ INSERT INTO employees(first_name,last_name,job_title,department_id,salary) VALUE
 ('Margareta','Olssson','Medical Director',3,2500.00),
 ('Daniel','Nilssson','Nuttririon Technician',4,2600.00);
 
-CREATE TABLE rooms(
+CREATE TABLE IF NOT EXISTS rooms(
 id INT PRIMARY KEY AUTO_INCREMENT,
 occupation VARCHAR(30)
 );
 
 INSERT INTO rooms(occupation) VALUES ('free'),('occupied'),('free'),('free'),('occupied');
 
-CREATE TABLE patients(
+CREATE TABLE IF NOT EXISTS patients(
 id INT PRIMARY KEY AUTO_INCREMENT,
 first_name VARCHAR(50),
 last_name VARCHAR(50),
@@ -77,3 +78,6 @@ VALUES
 
 
 """
+mycursor.fetchall()
+mycursor = mydb.cursor()
+mycursor.execute(sql_code)
