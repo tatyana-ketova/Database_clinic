@@ -81,3 +81,7 @@ VALUES
 mycursor.fetchall()
 mycursor = mydb.cursor()
 mycursor.execute(sql_code)
+
+
+mycursor.close()
+mydb.close()
